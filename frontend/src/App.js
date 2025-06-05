@@ -222,11 +222,383 @@ const ServicesSection = () => {
   );
 };
 
+// Benefits Section Component
+const BenefitsSection = () => {
+  const benefits = [
+    {
+      icon: <Clock size={48} />,
+      title: "24/7 Availability",
+      description: "We're here when you need us, day or night, weekends and holidays",
+      image: "https://images.pexels.com/photos/2418645/pexels-photo-2418645.jpeg"
+    },
+    {
+      icon: <Leaf size={48} />,
+      title: "Eco-Friendly Supplies",
+      description: "Safe, green cleaning products that protect your family and the environment",
+      image: "https://images.unsplash.com/photo-1583907659441-addbe699e921"
+    },
+    {
+      icon: <DollarSign size={48} />,
+      title: "Competitive Pricing",
+      description: "Quality cleaning services at prices that fit your budget",
+      image: "https://images.pexels.com/photos/17423267/pexels-photo-17423267.jpeg"
+    },
+    {
+      icon: <MapPin size={48} />,
+      title: "Greater Toronto Area",
+      description: "Serving all of GTA with reliable, professional cleaning services",
+      image: "https://images.pexels.com/photos/17423267/pexels-photo-17423267.jpeg"
+    }
+  ];
+
+  return (
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-dark">
+            Why Choose <span className="text-gradient">Clean Connect</span>
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            We're committed to providing exceptional cleaning services that exceed your expectations
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {benefits.map((benefit, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="text-center group"
+            >
+              <div className="relative mb-6">
+                <div 
+                  className="w-24 h-24 rounded-full mx-auto bg-cover bg-center relative"
+                  style={{ backgroundImage: `url(${benefit.image})` }}
+                >
+                  <div className="absolute inset-0 bg-brand-blue/80 rounded-full flex items-center justify-center text-white group-hover:bg-brand-blue-dark transition-colors">
+                    {benefit.icon}
+                  </div>
+                </div>
+              </div>
+              
+              <h3 className="text-xl font-bold mb-3 text-neutral-dark">{benefit.title}</h3>
+              <p className="text-gray-600">{benefit.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Pricing Section Component
+const PricingSection = () => {
+  const pricingPlans = [
+    {
+      name: "Standard Cleaning",
+      price: "From $80",
+      description: "Perfect for regular maintenance",
+      features: [
+        "Dusting all surfaces",
+        "Vacuuming & mopping",
+        "Bathroom sanitization",
+        "Kitchen cleaning",
+        "Trash removal"
+      ],
+      popular: false
+    },
+    {
+      name: "Deep Cleaning",
+      price: "From $150",
+      description: "Comprehensive top-to-bottom clean",
+      features: [
+        "Everything in Standard",
+        "Inside appliances",
+        "Baseboards & windows",
+        "Light fixtures",
+        "Detailed scrubbing"
+      ],
+      popular: true
+    },
+    {
+      name: "Commercial Cleaning",
+      price: "Custom Quote",
+      description: "Tailored for business needs",
+      features: [
+        "Office space cleaning",
+        "Restroom maintenance",
+        "Floor care",
+        "Trash & recycling",
+        "Flexible scheduling"
+      ],
+      popular: false
+    }
+  ];
+
+  return (
+    <section className="py-20 bg-neutral-light">
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-dark">
+            Transparent <span className="text-gradient">Pricing</span>
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            No hidden fees, no surprises. Choose the cleaning package that fits your needs and budget
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {pricingPlans.map((plan, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className={`relative bg-white rounded-3xl p-8 shadow-lg ${
+                plan.popular ? 'ring-4 ring-brand-blue scale-105' : ''
+              }`}
+            >
+              {plan.popular && (
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-brand-blue text-white px-4 py-2 rounded-full text-sm font-semibold">
+                    Most Popular
+                  </span>
+                </div>
+              )}
+              
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold mb-2 text-neutral-dark">{plan.name}</h3>
+                <div className="text-4xl font-bold mb-2 text-gradient">{plan.price}</div>
+                <p className="text-gray-600">{plan.description}</p>
+              </div>
+              
+              <ul className="space-y-3 mb-8">
+                {plan.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-center gap-3">
+                    <Check size={20} className="text-accent-green flex-shrink-0" />
+                    <span className="text-gray-600">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              <button className={`w-full py-3 rounded-xl font-semibold transition-colors ${
+                plan.popular 
+                  ? 'bg-brand-blue text-white hover:bg-brand-blue-dark' 
+                  : 'border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white'
+              }`}>
+                Get Quote
+              </button>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Booking Section Component
+const BookingSection = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    service: '',
+    date: '',
+    time: '',
+    message: ''
+  });
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission here
+    console.log('Form submitted:', formData);
+    alert('Thank you! We\'ll contact you shortly to confirm your booking.');
+  };
+
+  return (
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-dark">
+              Book Your <span className="text-gradient">Cleaning</span> Today
+            </h2>
+            <p className="text-xl text-gray-600 mb-8">
+              Ready for a sparkling clean space? Schedule your cleaning service in just a few clicks. 
+              We'll confirm your appointment within 24 hours.
+            </p>
+            
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-brand-blue rounded-full flex items-center justify-center text-white">
+                  <Calendar size={24} />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-neutral-dark">Flexible Scheduling</h4>
+                  <p className="text-gray-600">Choose the date and time that works for you</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-accent-green rounded-full flex items-center justify-center text-white">
+                  <Award size={24} />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-neutral-dark">Quality Guarantee</h4>
+                  <p className="text-gray-600">100% satisfaction guaranteed or we'll make it right</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-accent-yellow rounded-full flex items-center justify-center text-white">
+                  <Users size={24} />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-neutral-dark">Trusted Team</h4>
+                  <p className="text-gray-600">Experienced, insured, and background-checked cleaners</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="glass-effect rounded-3xl p-8"
+          >
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-blue focus:outline-none transition-colors"
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-blue focus:outline-none transition-colors"
+                  required
+                />
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-blue focus:outline-none transition-colors"
+                  required
+                />
+                <select
+                  name="service"
+                  value={formData.service}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-blue focus:outline-none transition-colors"
+                  required
+                >
+                  <option value="">Select Service</option>
+                  <option value="residential">Residential Cleaning</option>
+                  <option value="commercial">Commercial Cleaning</option>
+                  <option value="deep">Deep Cleaning</option>
+                  <option value="move">Move-in/Move-out</option>
+                  <option value="airbnb">Airbnb Cleaning</option>
+                  <option value="window">Window Cleaning</option>
+                </select>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input
+                  type="date"
+                  name="date"
+                  value={formData.date}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-blue focus:outline-none transition-colors"
+                  required
+                />
+                <select
+                  name="time"
+                  value={formData.time}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-blue focus:outline-none transition-colors"
+                  required
+                >
+                  <option value="">Select Time</option>
+                  <option value="morning">Morning (8AM - 12PM)</option>
+                  <option value="afternoon">Afternoon (12PM - 5PM)</option>
+                  <option value="evening">Evening (5PM - 8PM)</option>
+                </select>
+              </div>
+              
+              <textarea
+                name="message"
+                placeholder="Additional details or special requests..."
+                value={formData.message}
+                onChange={handleInputChange}
+                rows="4"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-blue focus:outline-none transition-colors resize-none"
+              ></textarea>
+              
+              <button
+                type="submit"
+                className="w-full cta-button px-8 py-4 rounded-xl text-lg font-semibold text-white"
+              >
+                Book Now - Free Quote
+              </button>
+            </form>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default function App() {
   return (
     <div className="min-h-screen">
       <HeroSection />
       <ServicesSection />
+      <BenefitsSection />
+      <PricingSection />
+      <BookingSection />
     </div>
   );
 }
