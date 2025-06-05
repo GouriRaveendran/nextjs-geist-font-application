@@ -591,14 +591,365 @@ const BookingSection = () => {
   );
 };
 
+// Navigation Header Component
+const NavigationHeader = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 glass-effect">
+      <div className="container mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center">
+              <Sparkles size={24} className="text-white" />
+            </div>
+            <span className="text-2xl font-bold text-brand-blue">Clean Connect</span>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#services" className="text-neutral-dark hover:text-brand-blue transition-colors">Services</a>
+            <a href="#pricing" className="text-neutral-dark hover:text-brand-blue transition-colors">Pricing</a>
+            <a href="#booking" className="text-neutral-dark hover:text-brand-blue transition-colors">Book Now</a>
+            <a href="#contact" className="text-neutral-dark hover:text-brand-blue transition-colors">Contact</a>
+            <button className="bg-brand-blue text-white px-6 py-2 rounded-xl hover:bg-brand-blue-dark transition-colors">
+              Call Now
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden text-neutral-dark"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <div className="w-6 h-6 flex flex-col justify-center items-center">
+              <span className={`bg-current block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></span>
+              <span className={`bg-current block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+              <span className={`bg-current block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>
+            </div>
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="md:hidden mt-4 py-4 border-t border-gray-200">
+            <div className="flex flex-col space-y-4">
+              <a href="#services" className="text-neutral-dark hover:text-brand-blue transition-colors">Services</a>
+              <a href="#pricing" className="text-neutral-dark hover:text-brand-blue transition-colors">Pricing</a>
+              <a href="#booking" className="text-neutral-dark hover:text-brand-blue transition-colors">Book Now</a>
+              <a href="#contact" className="text-neutral-dark hover:text-brand-blue transition-colors">Contact</a>
+              <button className="bg-brand-blue text-white px-6 py-2 rounded-xl hover:bg-brand-blue-dark transition-colors self-start">
+                Call Now
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
+
+// Testimonials Section Component
+const TestimonialsSection = () => {
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      location: "Toronto, ON",
+      rating: 5,
+      text: "Clean Connect transformed my home! Their eco-friendly approach and attention to detail is outstanding. The team is professional and always punctual.",
+      image: "https://images.pexels.com/photos/15241284/pexels-photo-15241284.jpeg"
+    },
+    {
+      name: "Michael Chen",
+      location: "Mississauga, ON",
+      rating: 5,
+      text: "Best cleaning service in the GTA! They cleaned our office after renovation and it looks brand new. Highly recommend for commercial cleaning.",
+      image: "https://images.pexels.com/photos/15241284/pexels-photo-15241284.jpeg"
+    },
+    {
+      name: "Emma Rodriguez",
+      location: "Markham, ON",
+      rating: 5,
+      text: "24/7 availability is a game-changer for my Airbnb business. Clean Connect helps me maintain 5-star ratings with their quick turnaround service.",
+      image: "https://images.pexels.com/photos/15241284/pexels-photo-15241284.jpeg"
+    }
+  ];
+
+  return (
+    <section className="py-20 bg-gradient-to-br from-brand-blue/5 to-brand-blue-light/5">
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-dark">
+            What Our <span className="text-gradient">Customers Say</span>
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Don't just take our word for it. Here's what satisfied customers across the GTA say about Clean Connect
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-3xl p-8 shadow-lg relative"
+              style={{
+                backgroundImage: `url(${testimonial.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+            >
+              <div className="absolute inset-0 bg-white/90 backdrop-blur-sm rounded-3xl"></div>
+              <div className="relative z-10">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} size={20} className="text-accent-yellow fill-current" />
+                  ))}
+                </div>
+                
+                <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
+                
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-brand-blue rounded-full flex items-center justify-center text-white font-bold">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-neutral-dark">{testimonial.name}</h4>
+                    <p className="text-gray-600 text-sm">{testimonial.location}</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Contact Section Component
+const ContactSection = () => {
+  return (
+    <section 
+      id="contact" 
+      className="py-20 bg-cover bg-center relative"
+      style={{
+        backgroundImage: `url(https://images.pexels.com/photos/28209885/pexels-photo-28209885.jpeg)`
+      }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/90 to-brand-blue-dark/80"></div>
+      
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-white"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Ready for a <span className="text-accent-yellow">Spotless Space?</span>
+            </h2>
+            <p className="text-xl mb-8 opacity-90">
+              Get your free quote today and discover why Clean Connect is the trusted choice 
+              for cleaning services across the Greater Toronto Area.
+            </p>
+            
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                  <Phone size={24} />
+                </div>
+                <div>
+                  <h4 className="font-semibold">Call Us 24/7</h4>
+                  <p className="opacity-90">(416) 555-CLEAN</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                  <Mail size={24} />
+                </div>
+                <div>
+                  <h4 className="font-semibold">Email Us</h4>
+                  <p className="opacity-90">hello@cleanconnect.ca</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                  <MapPin size={24} />
+                </div>
+                <div>
+                  <h4 className="font-semibold">Service Area</h4>
+                  <p className="opacity-90">Greater Toronto Area</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-3xl p-8"
+          >
+            <h3 className="text-2xl font-bold mb-6 text-neutral-dark">Get Your Free Quote</h3>
+            <form className="space-y-4">
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-blue focus:outline-none transition-colors"
+              />
+              <input
+                type="email"
+                placeholder="Email Address"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-blue focus:outline-none transition-colors"
+              />
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-blue focus:outline-none transition-colors"
+              />
+              <select className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-blue focus:outline-none transition-colors">
+                <option>Select Service Type</option>
+                <option>Residential Cleaning</option>
+                <option>Commercial Cleaning</option>
+                <option>Deep Cleaning</option>
+                <option>Move-in/Move-out</option>
+                <option>Airbnb Cleaning</option>
+                <option>Window Cleaning</option>
+              </select>
+              <textarea
+                placeholder="Tell us about your cleaning needs..."
+                rows="4"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-blue focus:outline-none transition-colors resize-none"
+              ></textarea>
+              <button className="w-full bg-brand-blue text-white py-3 rounded-xl font-semibold hover:bg-brand-blue-dark transition-colors">
+                Get Free Quote
+              </button>
+            </form>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Footer Component
+const Footer = () => {
+  return (
+    <footer className="bg-neutral-dark text-white py-12">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center">
+                <Sparkles size={24} className="text-white" />
+              </div>
+              <span className="text-2xl font-bold">Clean Connect</span>
+            </div>
+            <p className="text-gray-400 mb-4">
+              Premium cleaning services across the Greater Toronto Area. 
+              Eco-friendly, reliable, and available 24/7.
+            </p>
+            <div className="flex gap-4">
+              <div className="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center hover:bg-brand-blue-light transition-colors cursor-pointer">
+                <span className="text-sm font-bold">f</span>
+              </div>
+              <div className="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center hover:bg-brand-blue-light transition-colors cursor-pointer">
+                <span className="text-sm font-bold">ig</span>
+              </div>
+              <div className="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center hover:bg-brand-blue-light transition-colors cursor-pointer">
+                <span className="text-sm font-bold">in</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Services</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li><a href="#" className="hover:text-white transition-colors">Residential Cleaning</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Commercial Cleaning</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Deep Cleaning</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Move-in/Move-out</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Airbnb Cleaning</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Window Cleaning</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Company</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Our Team</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Reviews</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
+            <div className="space-y-3 text-gray-400">
+              <div className="flex items-center gap-3">
+                <Phone size={16} />
+                <span>(416) 555-CLEAN</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail size={16} />
+                <span>hello@cleanconnect.ca</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <MapPin size={16} />
+                <span>Greater Toronto Area</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Clock size={16} />
+                <span>24/7 Available</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="section-divider mb-8"></div>
+
+        <div className="flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
+          <p>&copy; 2024 Clean Connect. All rights reserved.</p>
+          <div className="flex gap-6 mt-4 md:mt-0">
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
 export default function App() {
   return (
     <div className="min-h-screen">
+      <NavigationHeader />
       <HeroSection />
       <ServicesSection />
       <BenefitsSection />
       <PricingSection />
       <BookingSection />
+      <TestimonialsSection />
+      <ContactSection />
+      <Footer />
     </div>
   );
 }
