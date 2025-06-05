@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>CleanConnect - Professional Cleaning Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body { font-family: 'Open Sans', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
+    .animated-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(270deg, #7f5af0, #f0abfc, #34d399, #3b82f6);
+      background-size: 800% 800%;
+      animation: gradientShift 15s ease infinite;
+      background-blend-mode: multiply;
+      background-color: rgba(255, 255, 255, 0.15);
+      z-index: -1;
+      border-radius: 0 0 50% 50% / 20% 20% 80% 80%;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .fade-slide-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-slide-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .glow-button {
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+    }
+    .glow-button:hover,
+    .glow-button:focus {
+      box-shadow: 0 0 15px 3px #34d399;
+      outline: none;
+    }
+    .glow-button::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 10%, transparent 10.01%);
+      background-repeat: no-repeat;
+      background-position: 50%;
+      transform: scale(10, 10);
+      opacity: 0;
+      transition: transform 0.5s, opacity 1s;
+    }
+    .glow-button:active::after {
+      transform: scale(0, 0);
+      opacity: 0.3;
+      transition: 0s;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 relative overflow-x-hidden">
+  <header class="bg-white shadow-md sticky top-0 z-50" role="banner" aria-label="Primary Navigation">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a class="text-3xl font-bold text-blue-600 tracking-wide select-none" href="#" aria-label="CleanConnect Home">
+        CleanConnect
+      </a>
+    <nav class="hidden md:flex space-x-8 font-semibold text-gray-700" role="navigation" aria-label="Primary">
+        <a href="#services" class="hover:text-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-600 rounded cursor-pointer" id="nav-services">Services</a>
+        <a href="#pricing" class="hover:text-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-600 rounded cursor-pointer" id="nav-pricing">Pricing</a>
+        <a href="#booking" class="hover:text-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-600 rounded cursor-pointer" id="nav-booking">Booking</a>
+        <a href="#about" class="hover:text-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-600 rounded cursor-pointer" id="nav-about">About</a>
+        <a href="#contact" class="hover:text-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-600 rounded cursor-pointer" id="nav-contact">Contact</a>
+      </nav>
+      <button class="md:hidden focus:outline-none focus:ring-2 focus:ring-blue-600 rounded" id="menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <i class="fas fa-bars text-2xl text-gray-700"></i>
+      </button>
+    </div>
+    <nav class="hidden md:hidden bg-white border-t border-gray-200" id="mobile-menu" role="navigation" aria-label="Mobile Primary">
+      <a class="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50 focus:outline-none focus:bg-blue-100" href="#services">Services</a>
+      <a class="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50 focus:outline-none focus:bg-blue-100" href="#pricing">Pricing</a>
+      <a class="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50 focus:outline-none focus:bg-blue-100" href="#booking">Booking</a>
+      <a class="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50 focus:outline-none focus:bg-blue-100" href="#about">About</a>
+      <a class="block px-6 py-3 hover:bg-blue-50 focus:outline-none focus:bg-blue-100" href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="relative bg-white text-gray-900 overflow-hidden" aria-label="Hero section">
+      <div class="animated-bg" aria-hidden="true"></div>
+      <div class="max-w-7xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center relative z-10">
+        <div class="md:w-1/2 fade-slide-up" style="transform-style: preserve-3d" tabindex="0">
+          <h1 class="text-5xl font-extrabold mb-6 leading-tight perspective-1000">
+            A Clean Home Feels Better. Simple as That
+          </h1>
+          <p class="text-xl mb-8 max-w-lg">
+            We make cleaning stress-free—just friendly people showing up on time, doing the job right, and leaving your place feeling brand new
+          </p>
+          <a href="#contact" class="inline-block bg-green-500 text-white font-bold px-8 py-4 rounded shadow glow-button hover:bg-green-600 transition transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-green-600">Let's personalize your cleaning</a>
+          <ul class="mt-8 space-y-3 text-lg max-w-md" aria-label="Key steps">
+            <li class="flex items-center">
+              <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 animate-bounce" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Tell us your space size
+            </li>
+            <li class="flex items-center">
+              <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 animate-bounce delay-150" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Choose a package (or let us recommend)
+            </li>
+            <li class="flex items-center">
+              <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 animate-bounce delay-300" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Sit back—we show up, clean, and go
+            </li>
+          </ul>
+        </div>
+        <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center flex-col items-center fade-slide-up" tabindex="0">
+          <img src="https://storage.googleapis.com/a1aa/image/9b2d73c8-8130-4044-da39-769c946f9826.jpg" alt="Modern clean home interior with sunlight streaming through large windows, showcasing a spotless living room with minimalistic furniture and plants" class="rounded-lg shadow-lg max-w-full h-auto mb-8 transform hover:scale-105 transition-transform duration-500" />
+          <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Happy customer smiling" class="rounded-full shadow-lg w-48 h-48 object-cover transform hover:scale-110 transition-transform duration-500" />
+        </div>
+      </div>
+    </section>
+
+        <h2 id="services-heading" class="text-3xl font-bold text-blue-600 mb-6 fade-slide-up">
+          Services
+        </h2>
+<section class="mb-16 max-w-7xl mx-auto px-4 flex flex-col md:flex-row md:space-x-8" id="services" aria-labelledby="services-heading" tabindex="0" style="margin-top: 6rem;">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:flex-1">
+        <!-- Services Grid -->
+        <article class="bg-white rounded-lg shadow-sm p-2 flex flex-col items-center text-center fade-slide-up cursor-pointer hover:shadow-md transition-shadow max-w-sm" tabindex="0" aria-label="Bathroom Cleaning Service" onclick="updateServiceCount('bathrooms')">
+          <img alt="Clean and shiny bathroom with sparkling tiles, mirror, sink, and bathtub after professional cleaning" class="mb-1 rounded-full shadow-sm w-12 h-12 object-cover" height="48" loading="lazy" src="https://storage.googleapis.com/a1aa/image/8a73b21d-674f-4f5e-8d35-59d81ed4e796.jpg" width="48" />
+          <h3 class="text-sm font-semibold mb-1">Bathroom</h3>
+          <div class="flex items-center space-x-2">
+            <button class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 text-xs" onclick="decrementCount('bathrooms-count', event)">-</button>
+<input type="number" id="bathrooms-count" name="bathrooms-count" min="0" value="0" class="w-12 text-center border border-gray-300 rounded text-xs" onchange="updatePriceEstimation()">
+            <button class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 text-xs" onclick="incrementCount('bathrooms-count', event)">+</button>
+          </div>
+          <p class="text-xs text-gray-500 mt-1">$25 each</p>
+        </article>
+        <article class="bg-white rounded-lg shadow-sm p-2 flex flex-col items-center text-center fade-slide-up cursor-pointer hover:shadow-md transition-shadow max-w-sm" tabindex="0" aria-label="Bedroom Cleaning Service" onclick="updateServiceCount('bedrooms')">
+          <img alt="Tidy and clean bedroom with made bed, vacuumed carpet, and dust-free furniture" class="mb-1 rounded-full shadow-sm w-12 h-12 object-cover" height="48" loading="lazy" src="https://storage.googleapis.com/a1aa/image/a30ae1e9-c744-4333-a4e2-a589ceef2bab.jpg" width="48" />
+          <h3 class="text-sm font-semibold mb-1">Bedroom</h3>
+          <div class="flex items-center space-x-2">
+            <button class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 text-xs" onclick="decrementCount('bedrooms-count', event)">-</button>
+<input type="number" id="bedrooms-count" name="bedrooms-count" min="0" value="0" class="w-12 text-center border border-gray-300 rounded text-xs" onchange="updatePriceEstimation()">
+            <button class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 text-xs" onclick="incrementCount('bedrooms-count', event)">+</button>
+          </div>
+          <p class="text-xs text-gray-500 mt-1">$30 each</p>
+        </article>
+        <article class="bg-white rounded-lg shadow-sm p-2 flex flex-col items-center text-center fade-slide-up cursor-pointer hover:shadow-md transition-shadow max-w-sm" tabindex="0" aria-label="Living Room Cleaning Service" onclick="updateServiceCount('living')">
+          <img alt="Clean and organized living room" class="mb-1 rounded-full shadow-sm w-12 h-12 object-cover" height="48" loading="lazy" src="https://storage.googleapis.com/a1aa/image/d16a06e2-094f-4415-7195-ebcf646cc7a5.jpg" width="48" />
+          <h3 class="text-sm font-semibold mb-1">Living Room</h3>
+          <div class="flex items-center space-x-2">
+            <button class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 text-xs" onclick="decrementCount('living-count', event)">-</button>
+<input type="number" id="living-count" name="living-count" min="0" value="0" class="w-12 text-center border border-gray-300 rounded text-xs" onchange="updatePriceEstimation()">
+            <button class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 text-xs" onclick="incrementCount('living-count', event)">+</button>
+          </div>
+          <p class="text-xs text-gray-500 mt-1">$15 each</p>
+        </article>
+        <article class="bg-white rounded-lg shadow-sm p-2 flex flex-col items-center text-center fade-slide-up cursor-pointer hover:shadow-md transition-shadow max-w-sm" tabindex="0" aria-label="Kitchen Cleaning Service" onclick="updateServiceCount('kitchens')">
+          <img alt="Clean kitchen with shiny countertops" class="mb-1 rounded-full shadow-sm w-12 h-12 object-cover" height="48" loading="lazy" src="https://storage.googleapis.com/a1aa/image/aea4aa19-a7bd-48eb-c9f7-95afd80aace9.jpg" width="48" />
+          <h3 class="text-sm font-semibold mb-1">Kitchen</h3>
+          <div class="flex items-center space-x-2">
+            <button class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 text-xs" onclick="decrementCount('kitchens-count', event)">-</button>
+<input type="number" id="kitchens-count" name="kitchens-count" min="0" value="0" class="w-12 text-center border border-gray-300 rounded text-xs" onchange="updatePriceEstimation()">
+            <button class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 text-xs" onclick="incrementCount('kitchens-count', event)">+</button>
+          </div>
+          <p class="text-xs text-gray-500 mt-1">$20 each</p>
+        </article>
+        <article class="bg-white rounded-lg shadow-sm p-2 flex flex-col items-center text-center fade-slide-up cursor-pointer hover:shadow-md transition-shadow max-w-sm" tabindex="0" aria-label="Window Cleaning Service">
+          <img alt="Clean windows letting in natural light" class="mb-1 rounded-full shadow-sm w-12 h-12 object-cover" height="48" loading="lazy" src="https://storage.googleapis.com/a1aa/image/24dfd1be-1f71-4179-c022-fd9d4202d3ab.jpg" width="48" />
+          <h3 class="text-sm font-semibold mb-1">Windows</h3>
+          <div class="text-gray-600 space-y-2 text-xs">
+            <div>
+              <p class="mb-1">Small</p>
+              <div class="flex items-center justify-center space-x-1">
+                <button class="w-5 h-5 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 text-xs" onclick="decrementCount('windows-small', event)">-</button>
+                <input type="number" id="windows-small" name="windows-small" min="0" value="0" class="w-8 text-center border border-gray-300 rounded text-xs" onchange="updatePriceEstimation()">
+                <button class="w-5 h-5 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 text-xs" onclick="incrementCount('windows-small', event)">+</button>
+              </div>
+              <p class="text-xs text-gray-500">$5</p>
+            </div>
+            <div>
+              <p class="mb-1">Medium</p>
+              <div class="flex items-center justify-center space-x-1">
+                <button class="w-5 h-5 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 text-xs" onclick="decrementCount('windows-medium', event)">-</button>
+                <input type="number" id="windows-medium" name="windows-medium" min="0" value="0" class="w-8 text-center border border-gray-300 rounded text-xs" onchange="updatePriceEstimation()">
+                <button class="w-5 h-5 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 text-xs" onclick="incrementCount('windows-medium', event)">+</button>
+              </div>
+              <p class="text-xs text-gray-500">$7</p>
+            </div>
+            <div>
+              <p class="mb-1">Large</p>
+              <div class="flex items-center justify-center space-x-1">
+                <button class="w-5 h-5 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 text-xs" onclick="decrementCount('windows-large', event)">-</button>
+                <input type="number" id="windows-large" name="windows-large" min="0" value="0" class="w-8 text-center border border-gray-300 rounded text-xs" onchange="updatePriceEstimation()">
+                <button class="w-5 h-5 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 text-xs" onclick="incrementCount('windows-large', event)">+</button>
+              </div>
+              <p class="text-xs text-gray-500">$10</p>
+            </div>
+            <div class="flex items-center space-x-2">
+              <input type="checkbox" id="windows-upper-floor" name="windows-upper-floor" class="form-checkbox text-blue-600 w-3 h-3" onchange="updatePriceEstimation()">
+              <label for="windows-upper-floor" class="text-xs">Upper Floor (+$2 per window)</label>
+            </div>
+          </div>
+        </article>
+        <article class="bg-white rounded-lg shadow-sm p-2 flex flex-col items-center text-center fade-slide-up cursor-pointer hover:shadow-md transition-shadow max-w-sm" tabindex="0" aria-label="Additional Services">
+          <img alt="Professional cleaning supplies and equipment" class="mb-1 rounded-full shadow-sm w-12 h-12 object-cover" height="48" loading="lazy" src="https://storage.googleapis.com/a1aa/image/aea4aa19-a7bd-48eb-c9f7-95afd80aace9.jpg" width="48" />
+          <h3 class="text-sm font-semibold mb-1">Add-ons</h3>
+          <div class="text-gray-600 space-y-1 text-xs">
+            <div class="flex items-center justify-between">
+              <label for="addon-fridge" class="text-xs">Fridge</label>
+              <div class="flex items-center">
+<input type="checkbox" id="addon-fridge" name="addon-fridge" class="form-checkbox text-blue-600 w-3 h-3" onchange="updatePriceEstimation()">
+                <span class="ml-1 text-xs">$30</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <label for="addon-oven" class="text-xs">Oven</label>
+              <div class="flex items-center">
+<input type="checkbox" id="addon-oven" name="addon-oven" class="form-checkbox text-blue-600 w-3 h-3" onchange="updatePriceEstimation()">
+                <span class="ml-1 text-xs">$30</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <label for="addon-cabinets" class="text-xs">Cabinets</label>
+              <div class="flex items-center">
+<input type="checkbox" id="addon-cabinets" name="addon-cabinets" class="form-checkbox text-blue-600 w-3 h-3" onchange="updatePriceEstimation()">
+                <span class="ml-1 text-xs">$40</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <label for="addon-sanitization" class="text-xs">Sanitize</label>
+              <div class="flex items-center">
+<input type="checkbox" id="addon-sanitization" name="addon-sanitization" class="form-checkbox text-blue-600 w-3 h-3" onchange="updatePriceEstimation()">
+                <span class="ml-1 text-xs">$25</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <label for="addon-bedsheet" class="text-xs">Bedsheet</label>
+              <div class="flex items-center">
+<input type="checkbox" id="addon-bedsheet" name="addon-bedsheet" class="form-checkbox text-blue-600 w-3 h-3" onchange="updatePriceEstimation()">
+                <span class="ml-1 text-xs">$25</span>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="bg-white rounded-lg shadow-sm p-2 flex flex-col items-center text-center fade-slide-up cursor-pointer hover:shadow-md transition-shadow max-w-sm" tabindex="0" aria-label="Frequency Selection">
+          <img alt="Calendar and schedule icon" class="mb-1 rounded-full shadow-sm w-12 h-12 object-cover" height="48" loading="lazy" src="https://storage.googleapis.com/a1aa/image/aea4aa19-a7bd-48eb-c9f7-95afd80aace9.jpg" width="48" />
+          <h3 class="text-sm font-semibold mb-1">Frequency</h3>
+          <div class="text-gray-600 space-y-2 text-xs w-full">
+            <div class="flex items-center justify-center">
+<input type="radio" id="freq-once" name="frequency" value="once" class="form-radio text-blue-600 w-3 h-3" onchange="updatePriceEstimation()" checked>
+              <label for="freq-once" class="ml-1 text-xs text-gray-700">Once</label>
+            </div>
+            <div class="flex items-center justify-center">
+<input type="radio" id="freq-biweekly" name="frequency" value="biweekly" class="form-radio text-blue-600 w-3 h-3" onchange="updatePriceEstimation()">
+              <label for="freq-biweekly" class="ml-1 text-xs text-gray-700">Biweekly</label>
+              <span class="ml-1 text-xs text-green-600">(-10%)</span>
+            </div>
+            <div class="flex items-center justify-center">
+<input type="radio" id="freq-monthly" name="frequency" value="monthly" class="form-radio text-blue-600 w-3 h-3" onchange="updatePriceEstimation()">
+              <label for="freq-monthly" class="ml-1 text-xs text-gray-700">Monthly</label>
+              <span class="ml-1 text-xs text-green-600">(-20%)</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <section class="max-w-md md:flex-1">
+        <!-- Pricing and Services Summary Section -->
+        <section class="bg-white rounded-lg shadow-lg p-8">
+          <h2 class="text-2xl font-bold text-blue-600 mb-6 text-center">Pricing Summary</h2>
+          <div class="space-y-6">
+            <!-- Estimated Price -->
+            <div class="text-center p-6 bg-green-50 rounded-lg">
+              <h3 class="text-xl font-semibold mb-2">Estimated Price:</h3>
+              <p id="estimatedPrice" class="text-3xl font-bold text-green-600" aria-live="polite" aria-atomic="true">
+                $0.00
+              </p>
+            </div>
+            <!-- Custom Request Note -->
+            <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+              <p class="text-gray-600 italic text-center text-sm" tabindex="0" aria-label="Custom request note">
+                Looking for something not listed? Mention it while requesting a quote and we'll respond within 24 hours.
+              </p>
+            </div>
+            <button id="next-to-booking" type="button" class="w-full bg-blue-600 text-white font-bold py-3 rounded hover:bg-blue-700 transition glow-button focus:outline-none focus:ring-2 focus:ring-blue-600">
+              Next: Book Your Service
+            </button>
+          </div>
+        </section>
+      </section>
+    </section>
+
+   
+      <!-- Additional Information or Services -->
+       <section class="max-w-7xl mx-auto px-4 py-12">
+      <div class="bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-2xl font-bold text-blue-600 mb-6 text-center">Why Choose Us?</h2>
+        <div class="space-y-4">
+          <div class="flex items-start space-x-3">
+            <div class="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+              <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-800">Professional Team</h3>
+              <p class="text-gray-600 text-sm">Trained and experienced cleaning professionals</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-3">
+            <div class="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+              <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-800">Eco-Friendly Products</h3>
+              <p class="text-gray-600 text-sm">Safe for your family and the environment</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-3">
+            <div class="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+              <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-800">Flexible Scheduling</h3>
+              <p class="text-gray-600 text-sm">Book at your convenience, including weekends</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-3">
+            <div class="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+              <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-800">Satisfaction Guarantee</h3>
+              <p class="text-gray-600 text-sm">100% satisfaction or we'll make it right</p>
+            </div>
+          </div>
+          
+          <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+            <h4 class="font-semibold text-blue-800 mb-2">Special Offers</h4>
+            <ul class="text-sm text-blue-700 space-y-1">
+              <li>• 10% off biweekly cleaning</li>
+              <li>• 20% off monthly cleaning</li>
+              <li>• Free consultation for first-time customers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location and Booking Section -->
+    <section class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Location Column -->
+      <div class="bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-2xl font-bold text-blue-600 mb-6">Your Location</h2>
+        <div class="space-y-4">
+          <div>
+            <label for="postalCodeInput" class="block text-gray-700 font-semibold mb-2">Enter Your Postal Code</label>
+            <input type="text" id="postalCodeInput" name="postalCode" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm" placeholder="Enter postal code" maxlength="7" />
+            <p id="postalCodeError" class="text-red-500 text-sm mt-1 hidden"></p>
+          </div>
+          <div id="map" class="w-full h-[400px] rounded-lg shadow-md"></div>
+          <p class="text-sm text-gray-600">
+            Service area is GTA, Ontario. If your postal code is more than 500 km away from M1T1M5, a minimum booking price of $500 CAD applies.
+          </p>
+        </div>
+      </div>
+
+      <!-- Google Calendar Integration -->
+      <div class="bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-2xl font-bold text-blue-600 mb-6">Book Your Cleaning Service</h2>
+        <div class="space-y-6">
+          <p class="text-gray-600 mb-4">View our availability and book your cleaning service directly through our calendar.</p>
+          <div class="calendar-container bg-white rounded-lg p-4">
+            <div class="flex items-center justify-between mb-4">
+              <button id="prevMonth" class="p-2 hover:bg-gray-100 rounded">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <h3 id="monthYear" class="text-lg font-semibold"></h3>
+              <button id="nextMonth" class="p-2 hover:bg-gray-100 rounded">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+            
+            <!-- Calendar Grid -->
+            <div class="grid grid-cols-7 gap-1 mb-2 text-center">
+              <div class="font-semibold">Sun</div>
+              <div class="font-semibold">Mon</div>
+              <div class="font-semibold">Tue</div>
+              <div class="font-semibold">Wed</div>
+              <div class="font-semibold">Thu</div>
+              <div class="font-semibold">Fri</div>
+              <div class="font-semibold">Sat</div>
+            </div>
+            <div id="datesGrid" class="grid grid-cols-7 gap-1"></div>
+
+            <!-- Time Slots -->
+            <div class="mt-6">
+              <h4 class="font-semibold mb-2">Available Time Slots</h4>
+              <div id="timeSlotsGrid" class="grid grid-cols-3 gap-2"></div>
+            </div>
+
+            <!-- Selected Date/Time Display -->
+            <div class="mt-4 text-center">
+              <p class="font-semibold">Selected:</p>
+              <p id="selectedDateTime" class="text-blue-600"></p>
+            </div>
+
+            <!-- Confirm Booking Button -->
+            <button id="confirm-booking" class="mt-4 w-full bg-green-500 text-white text-center font-bold py-3 rounded hover:bg-green-600 transition glow-button focus:outline-none focus:ring-2 focus:ring-green-500">
+              Confirm Booking
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto px-4">
+      <section id="about" class="mb-16 flex-1 bg-white rounded-lg shadow-lg p-8 fade-slide-up" aria-labelledby="about-heading" tabindex="0">
+        <h2 id="about-heading" class="text-3xl font-bold text-blue-600 mb-6 text-center">
+          About CleanConnect
+        </h2>
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+          <img alt="Team of professional cleaning service providers wearing uniforms and smiling in a bright, clean home environment" class="rounded-lg shadow-md w-full md:w-1/3 object-cover" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/198b5f8b-6927-41b9-f17f-a334985e1fcf.jpg" width="300" />
+          <div class="text-gray-700 text-lg leading-relaxed">
+            <p>
+              At <span class="font-semibold text-blue-600">CleanConnect</span>, we pride ourselves on delivering top-quality cleaning services tailored to your needs. Serving Scarborough & Toronto, Ontario, our professional team uses eco-friendly products and proven techniques to ensure your home is spotless and healthy.
+            </p>
+            <p class="mt-4">
+              Whether you need regular cleaning or a deep clean, we offer flexible options to fit your schedule and budget. Our commitment is to provide reliable, thorough, and friendly service every time.
+            </p>
+            <p class="mt-4 font-semibold text-blue-600">
+              Experience the difference with CleanConnect – where cleanliness meets connection.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="mb-16 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8 fade-slide-up" aria-labelledby="contact-heading" tabindex="0">
+        <h2 id="contact-heading" class="text-3xl font-bold text-blue-600 mb-8 text-center">
+          Contact Us
+        </h2>
+        <form action="mailto:cleanconnect.sc@gmail.com" class="space-y-6" enctype="text/plain" method="POST" novalidate>
+          <div>
+            <label class="block text-gray-700 font-semibold mb-2" for="name">Name</label>
+            <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="name" name="Name" placeholder="Your full name" required type="text" aria-required="true" />
+          </div>
+          <div>
+            <label class="block text-gray-700 font-semibold mb-2" for="email">Email</label>
+            <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="email" name="Email" placeholder="you@example.com" required type="email" aria-required="true" />
+          </div>
+          <div>
+            <label class="block text-gray-700 font-semibold mb-2" for="phone">Phone</label>
+            <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="phone" name="Phone" placeholder="(123) 456-7890" required type="tel" aria-required="true" />
+          </div>
+          <div>
+            <label class="block text-gray-700 font-semibold mb-2" for="message">Message</label>
+            <textarea class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="message" name="Message" placeholder="Your message" rows="4" required aria-required="true"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded hover:bg-blue-700 transition glow-button focus:outline-none focus:ring-2 focus:ring-blue-600">Send Message</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+
+  <script>
+    // Service card interaction functions
+    function updateServiceCount(service) {
+      const input = document.getElementById(`${service}-count`);
+      if (input) {
+        const newValue = parseInt(input.value) + 1;
+        input.value = newValue;
+        updatePriceEstimation();
+      }
+    }
+
+    function incrementCount(id, event) {
+      event.stopPropagation();
+      const input = document.getElementById(id);
+      if (input) {
+        const newValue = parseInt(input.value) + 1;
+        input.value = newValue;
+        updatePriceEstimation();
+      }
+    }
+
+    function decrementCount(id, event) {
+      event.stopPropagation();
+      const input = document.getElementById(id);
+      if (input && parseInt(input.value) > 0) {
+        const newValue = parseInt(input.value) - 1;
+        input.value = newValue;
+        updatePriceEstimation();
+      }
+    }
+
+    const monthYearEl = document.getElementById('monthYear');
+    const datesGrid = document.getElementById('datesGrid');
+    const timeSlotsGrid = document.getElementById('timeSlotsGrid');
+    const selectedDateTimeEl = document.getElementById('selectedDateTime');
+    const btnNext = document.getElementById('btnNext');
+
+    let currentDate = new Date();
+    let selectedDate = null;
+    let selectedTime = null;
+
+    function updateMonthYear() {
+      const options = { year: 'numeric', month: 'long' };
+      monthYearEl.textContent = currentDate.toLocaleDateString('en-US', options);
+    }
+
+    function generateCalendar() {
+      datesGrid.innerHTML = '';
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const startDay = firstDay.getDay();
+
+      // Fill empty cells before first day
+      for (let i = 0; i < startDay; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.classList.add('calendar-date');
+        emptyCell.setAttribute('aria-hidden', 'true');
+        datesGrid.appendChild(emptyCell);
+      }
+
+      // Fill days
+      for (let day = 1; day <= lastDay.getDate(); day++) {
+        const dateCell = document.createElement('div');
+        dateCell.classList.add('calendar-date', 'cursor-pointer', 'border', 'border-transparent', 'rounded', 'select-none', 'hover:bg-blue-200', 'text-center', 'py-1');
+        dateCell.setAttribute('role', 'gridcell');
+        dateCell.setAttribute('tabindex', '0');
+        dateCell.textContent = day;
+
+        const dateObj = new Date(year, month, day);
+        if (
+          selectedDate &&
+          dateObj.toDateString() === selectedDate.toDateString()
+        ) {
+          dateCell.classList.add('bg-blue-500', 'text-white', 'font-bold', 'border-blue-700');
+        }
+
+        dateCell.addEventListener('click', () => {
+          selectedDate = dateObj;
+          selectedTime = null;
+          updateSelectedDateTime();
+          generateCalendar();
+          generateTimeSlots();
+          btnNext.disabled = true;
+        });
+
+        dateCell.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            dateCell.click();
+          }
+        });
+
+        datesGrid.appendChild(dateCell);
+      }
+    }
+
+    function generateTimeSlots() {
+      timeSlotsGrid.innerHTML = '';
+      if (!selectedDate) {
+        timeSlotsGrid.textContent = 'Please select a date first.';
+        return;
+      }
+
+      const times = [
+        '10:00 am', '10:30 am', '11:00 am', '11:30 am',
+        '12:00 pm', '12:30 pm', '1:00 pm', '1:30 pm', '2:00 pm'
+      ];
+
+      times.forEach(time => {
+        const timeBtn = document.createElement('button');
+        timeBtn.classList.add('time-slot', 'border', 'border-blue-500', 'rounded', 'py-1', 'text-blue-600', 'font-semibold', 'hover:bg-blue-200', 'select-none');
+        timeBtn.textContent = time;
+        timeBtn.setAttribute('type', 'button');
+        timeBtn.setAttribute('role', 'listitem');
+
+        if (selectedTime === time) {
+          timeBtn.classList.add('bg-blue-500', 'text-white');
+        }
+
+        timeBtn.addEventListener('click', () => {
+          selectedTime = time;
+          updateSelectedDateTime();
+          generateTimeSlots();
+          btnNext.disabled = false;
+        });
+
+        timeSlotsGrid.appendChild(timeBtn);
+      });
+    }
+
+    function updateSelectedDateTime() {
+      if (selectedDate && selectedTime) {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const dateStr = selectedDate.toLocaleDateString('en-US', options);
+        selectedDateTimeEl.textContent = `${dateStr} at ${selectedTime}`;
+      } else {
+        selectedDateTimeEl.textContent = 'No date and time selected';
+      }
+    }
+
+    // Initialize calendar event listeners and functions
+    function initializeCalendar() {
+      const prevMonthBtn = document.getElementById('prevMonth');
+      const nextMonthBtn = document.getElementById('nextMonth');
+      const confirmBookingBtn = document.getElementById('confirm-booking');
+
+      if (prevMonthBtn) {
+        prevMonthBtn.addEventListener('click', () => {
+          currentDate.setMonth(currentDate.getMonth() - 1);
+          generateCalendar();
+          updateMonthYear();
+        });
+      }
+
+      if (nextMonthBtn) {
+        nextMonthBtn.addEventListener('click', () => {
+          currentDate.setMonth(currentDate.getMonth() + 1);
+          generateCalendar();
+          updateMonthYear();
+        });
+      }
+
+      if (confirmBookingBtn) {
+        confirmBookingBtn.addEventListener('click', () => {
+          if (selectedDate && selectedTime) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const dateStr = selectedDate.toLocaleDateString('en-US', options);
+            alert(`Booking confirmed for ${dateStr} at ${selectedTime}`);
+          } else {
+            alert('Please select a date and time first.');
+          }
+        });
+      }
+
+      // Initialize calendar display
+      updateMonthYear();
+      generateCalendar();
+      generateTimeSlots();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.fade-slide-up').forEach(el => {
+        el.classList.add('visible');
+      });
+      
+      // Initialize calendar after DOM is loaded
+      initializeCalendar();
+
+      // Render service cards dynamically
+      renderServiceCards();
+    });
+  </script>
+
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" crossorigin=""/>
+  <script>
+    // Postal code to lat/lon for M1T1M5 (reference) and a simple geocoding for GTA postal codes
+    const referencePostalCode = 'M1T1M5';
+    const referenceCoords = { lat: 43.7854, lon: -79.2263 }; // Approximate coords for M1T1M5
+
+    // Simple geocoding function for Canadian postal codes (mocked for GTA area)
+    // In real app, replace with API call to geocoding service
+    function geocodePostalCode(postalCode) {
+      // Normalize postal code (remove spaces, uppercase)
+      const pc = postalCode.replace(/\s+/g, '').toUpperCase();
+
+      // Mocked data for GTA postal codes (only first 3 chars)
+      const gtaPostalAreas = {
+        'M1T': { lat: 43.7854, lon: -79.2263 },
+        'M2N': { lat: 43.7993, lon: -79.3606 },
+        'M3J': { lat: 43.7615, lon: -79.4111 },
+        'M4B': { lat: 43.7285, lon: -79.3153 },
+        'M5A': { lat: 43.6555, lon: -79.3841 },
+        'M6P': { lat: 43.6796, lon: -79.4483 },
+        'M9V': { lat: 43.6889, lon: -79.5761 },
+        'L4W': { lat: 43.8471, lon: -79.3370 },
+        'L5N': { lat: 43.5890, lon: -79.6441 },
+        'L6T': { lat: 43.6350, lon: -79.5650 }
+      };
+
+      const prefix = pc.substring(0, 3);
+      if (gtaPostalAreas[prefix]) {
+        return gtaPostalAreas[prefix];
+      }
+      return null; // Unknown postal code
+    }
+
+    // Calculate distance between two lat/lon points in km using Haversine formula
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+      const R = 6371; // Earth radius in km
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return R * c;
+    }
+
+    // Initialize Leaflet map
+    let map;
+    let userMarker;
+    let referenceMarker;
+
+    function initMap() {
+      map = L.map('map').setView([43.7, -79.4], 10); // Center on GTA
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      referenceMarker = L.marker([referenceCoords.lat, referenceCoords.lon])
+        .addTo(map)
+        .bindPopup('Service Center (M1T1M5)')
+        .openPopup();
+    }
+
+    // Update map with user location marker
+    function updateUserMarker(lat, lon) {
+      if (userMarker) {
+        userMarker.setLatLng([lat, lon]);
+      } else {
+        userMarker = L.marker([lat, lon]).addTo(map).bindPopup('Your Location').openPopup();
+      }
+      map.panTo([lat, lon]);
+    }
+
+    // Update price estimation with minimum price logic
+    function updatePriceEstimation() {
+      const bedrooms = parseInt(document.getElementById('bedrooms-count').value) || 0;
+      const bathrooms = parseInt(document.getElementById('bathrooms-count').value) || 0;
+      const kitchens = parseInt(document.getElementById('kitchens-count').value) || 0;
+      const living = parseInt(document.getElementById('living-count').value) || 0;
+      const windowsSmall = parseInt(document.getElementById('windows-small').value) || 0;
+      const windowsMedium = parseInt(document.getElementById('windows-medium').value) || 0;
+      const windowsLarge = parseInt(document.getElementById('windows-large').value) || 0;
+      const windowsUpper = document.getElementById('windows-upper-floor').checked;
+
+      // Base price calculation (only add costs for selected services)
+      let price = 0;
+      const services = [];
+      
+      if (bedrooms > 0) {
+        price += bedrooms * 30;
+        services.push(`${bedrooms} Bedroom${bedrooms > 1 ? 's' : ''} ($${bedrooms * 30})`);
+      }
+      if (bathrooms > 0) {
+        price += bathrooms * 25;
+        services.push(`${bathrooms} Bathroom${bathrooms > 1 ? 's' : ''} ($${bathrooms * 25})`);
+      }
+      if (kitchens > 0) {
+        price += kitchens * 20;
+        services.push(`${kitchens} Kitchen${kitchens > 1 ? 's' : ''} ($${kitchens * 20})`);
+      }
+      if (living > 0) {
+        price += living * 15;
+        services.push(`${living} Living Room${living > 1 ? 's' : ''} ($${living * 15})`);
+      }
+      
+      let windowPrice = windowsSmall * 5 + windowsMedium * 7 + windowsLarge * 10;
+      if (windowsUpper) windowPrice += (windowsSmall + windowsMedium + windowsLarge) * 2;
+      if (windowPrice > 0) {
+        price += windowPrice;
+        let windowDetails = [];
+        if (windowsSmall > 0) windowDetails.push(`${windowsSmall} Small`);
+        if (windowsMedium > 0) windowDetails.push(`${windowsMedium} Medium`);
+        if (windowsLarge > 0) windowDetails.push(`${windowsLarge} Large`);
+        if (windowsUpper) windowDetails.push('Upper Floor');
+        services.push(`Windows: ${windowDetails.join(', ')} ($${windowPrice})`);
+      }
+
+      // Add-ons
+      if (document.getElementById('addon-fridge').checked) {
+        price += 30;
+        services.push('Fridge Cleaning ($30)');
+      }
+      if (document.getElementById('addon-oven').checked) {
+        price += 30;
+        services.push('Oven Cleaning ($30)');
+      }
+      if (document.getElementById('addon-cabinets').checked) {
+        price += 40;
+        services.push('Cabinet Cleaning ($40)');
+      }
+      if (document.getElementById('addon-sanitization').checked) {
+        price += 25;
+        services.push('Sanitization ($25)');
+      }
+      if (document.getElementById('addon-bedsheet').checked) {
+        price += 25;
+        services.push('Bedsheet Change ($25)');
+      }
+
+      // Frequency multiplier
+      const frequencyRadio = document.querySelector('input[name="frequency"]:checked');
+      const frequency = frequencyRadio ? frequencyRadio.value : 'once';
+      if (frequency === 'biweekly') price *= 0.9;
+      else if (frequency === 'monthly') price *= 0.8;
+
+      // Enforce minimum price if distance > 500 km
+      if (distanceFromReference > 500) {
+        price = Math.max(price, 500);
+      }
+
+      price = price.toFixed(2);
+      document.getElementById('estimatedPrice').textContent = `$${price}`;
+    }
+
+    let distanceFromReference = 0;
+
+    // Handle postal code input change
+    document.getElementById('postalCodeInput').addEventListener('input', () => {
+      const postalCode = document.getElementById('postalCodeInput').value.trim();
+      const errorEl = document.getElementById('postalCodeError');
+      errorEl.classList.add('hidden');
+      if (postalCode.length < 3) {
+        return;
+      }
+      const coords = geocodePostalCode(postalCode);
+      if (!coords) {
+        errorEl.textContent = 'Invalid or unsupported postal code for GTA area.';
+        errorEl.classList.remove('hidden');
+        return;
+      }
+      distanceFromReference = calculateDistance(referenceCoords.lat, referenceCoords.lon, coords.lat, coords.lon);
+      updateUserMarker(coords.lat, coords.lon);
+      updatePriceEstimation();
+    });
+
+    // Update price estimation on input changes
+    document.querySelectorAll('#estimator-form input, #estimator-form select').forEach(el => {
+      el.addEventListener('change', updatePriceEstimation);
+      el.addEventListener('input', updatePriceEstimation);
+    });
+
+    // Next button in pricing section navigates to booking section
+    document.getElementById('next-to-booking').addEventListener('click', () => {
+      const bookingSection = Array.from(document.querySelectorAll('h2')).find(h2 => h2.textContent.includes('Select Date & Time'));
+      if (bookingSection) {
+        bookingSection.parentElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    // Initialize map on DOMContentLoaded
+    window.addEventListener('DOMContentLoaded', () => {
+      initMap();
+      updatePriceEstimation();
+      document.querySelectorAll('.fade-slide-up').forEach(el => {
+        el.classList.add('visible');
+      });
+
+      // Scroll to sections on nav click
+      const navPricing = document.getElementById('nav-pricing');
+      if (navPricing) {
+        navPricing.addEventListener('click', (e) => {
+          e.preventDefault();
+          document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+
+      const navBooking = document.getElementById('nav-booking');
+      if (navBooking) {
+        navBooking.addEventListener('click', (e) => {
+          e.preventDefault();
+          const bookingSection = Array.from(document.querySelectorAll('h2')).find(h2 => h2.textContent.includes('Select Date & Time'));
+          if (bookingSection) {
+            bookingSection.parentElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+    });
+  </script>
+
+  <footer class="bg-gray-800 text-white py-8 mt-16">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">CleanConnect</h3>
+        <p class="text-gray-300">Professional cleaning services tailored to your needs.</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold mb-4">Contact</h3>
+        <p class="text-gray-300">Email: info@cleanconnect.com</p>
+        <p class="text-gray-300">Phone: (437) 662-9939</p>
+        <p class="text-gray-300">Address: Toronto, ON</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold mb-4">Hours</h3>
+        <p class="text-gray-300">Monday - Friday: 8am - 6pm</p>
+        <p class="text-gray-300">Saturday: 9am - 4pm</p>
+        <p class="text-gray-300">Sunday: Closed</p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+      <p>&copy; 2025 CleanConnect. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
